@@ -1,0 +1,39 @@
+---
+import { Image } from 'astro:assets';
+import nxzavLogo from '@/assets/nxzav.svg';
+---
+
+<header class="h-screen py-12 grid grid-rows-3 col-[1] sticky top-0">
+  <div class="flex">
+    <a href="/">
+      <Image
+        src={nxzavLogo}
+        alt="Noé Zavala"
+        width={64}
+        class:list={'hover:rotate-90 transition ease-in-out'}
+      />
+    </a>
+  </div>
+  <nav class="flex items-center">
+    <ul class="flex flex-col gap-y-6">
+      <li>
+        <a
+          class="px-2 py-3 rounded-sm hover:text-blue-400 text-md font-bold uppercase"
+          href="#">Inicio</a
+        >
+      </li>
+      <li>
+        <a
+          class="px-2 py-3 rounded-sm hover:text-blue-400 text-md font-bold uppercase"
+          href="#">Proyectos</a
+        >
+      </li>
+      <li>
+        <a
+          class="px-2 py-3 rounded-sm hover:text-blue-400 text-md font-bold uppercase"
+          href="#">Servicios</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>

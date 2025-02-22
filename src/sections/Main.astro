@@ -1,0 +1,94 @@
+---
+import { Image } from 'astro:assets';
+import amicoImage from '@/assets/amico2.svg';
+import Tech from '@/components/Tech.astro';
+---
+
+<main class="min-h-screen col-[2]">
+  <section class="pt-36 mb-12">
+    <h1 class="mb-6 font-bold leading-tight">
+      Desarrollador Web Full Stack y Analista de Datos
+    </h1>
+    <h2 class="mb-12 text-4xl font-bold text-blue-400 leading-tight">
+      Especializado en desarrollo <br /> E-Commerce y Front-End.
+    </h2>
+    <div class="grid grid-cols-2 lg:grid-cols-[1.5fr_1fr]">
+      <div>
+        <h3 class="mb-6 text-xl">¡Hola! Soy Noé Zavala,</h3>
+        <p class="text-xl mb-6">
+          Un desarrollador y programador con experiencia en <span
+            class="text-blue-400 font-bold"
+          >
+            diseño y desarrollo</span
+          > web, así como en la automatización de campañas de <span
+            class="text-blue-400 font-bold"
+          >
+            email marketing y anuncios</span
+          > en diversas plataformas.
+        </p>
+        <p class="text-xl mb-6">
+          Disfruto creando soluciones digitales <span
+            class="text-blue-400 font-bold">optimizadas y accesibles</span
+          >, priorizando buenas prácticas que mejoran la <span
+            class="text-blue-400 font-bold">experiencia de usuario (UX)</span
+          >.
+        </p>
+      </div>
+      <div class="flex flex-col items-center">
+        <Image
+          src={amicoImage}
+          alt="Hombre sentado con una laptop en las manos"
+          width={280}
+        />
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="mb-12 text-4xl font-bold">Experiencia</h2>
+    <div class="mb-12">
+      <h3 class="text-3xl mb-6">Front End</h3>
+      <ul class="flex gap-6 flex-wrap">
+        <Tech>HTML</Tech>
+        <Tech>CSS</Tech>
+        <Tech>JavaScript</Tech>
+        <Tech>TypeScript</Tech>
+        <Tech>Tailwind</Tech>
+        <Tech>Astro</Tech>
+        <Tech>React</Tech>
+        <Tech>Vue.js</Tech>
+        <Tech>Next.js</Tech>
+        <Tech>Alpine.js</Tech>
+      </ul>
+    </div>
+    <div class="mb-12">
+      <h3 class="text-3xl mb-6">Back End</h3>
+      <ul class="flex gap-6 flex-wrap">
+        <Tech>Node.js</Tech>
+        <Tech>Express</Tech>
+        <Tech>Headless CMS</Tech>
+        <Tech>NestJS</Tech>
+        <Tech>MongoDB</Tech>
+        <Tech>PostgreSQL</Tech>
+      </ul>
+    </div>
+    <div class="mb-12">
+      <h3 class="text-3xl mb-6">Plataformas e-commerce y marketing</h3>
+      <ul class="flex gap-6 flex-wrap">
+        <Tech>Salesforce Marketing Cloud</Tech>
+        <Tech>Adobe Experience Cloud</Tech>
+        <Tech>Shopify</Tech>
+        <Tech>MailChimp</Tech>
+        <Tech>MercadoLibre</Tech>
+        <Tech>Amazon</Tech>
+        <Tech>WordPress</Tech>
+        <Tech>WooCommerce</Tech>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<style>
+  h1 {
+    font-size: clamp(1.5rem, 10vw, 3.25rem);
+  }
+</style>
