@@ -4,19 +4,20 @@ import amicoImage from '@/assets/amico2.svg';
 import Tech from '@/components/Tech.astro';
 ---
 
-<main class="min-h-screen col-[2]">
-  <section class="pt-36 mb-12">
+<main class="min-h-screen lg:col-[2]">
+  <section class="mb-12 pt-2 lg:pt-36">
+    <h3 class="mb-6">¡Hola! Soy Noé,</h3>
     <h1 class="mb-6 font-bold leading-tight">
-      Desarrollador Web Full Stack y Analista de Datos
+      Desarrollador Web Full Stack <br class="hidden lg:inline" /> y Analista de
+      Datos
     </h1>
-    <h2 class="mb-12 text-4xl font-bold text-blue-400 leading-tight">
-      Especializado en desarrollo <br /> E-Commerce y Front-End.
+    <h2 class="mb-6 lg:mb-12 font-bold text-blue-400 leading-tight">
+      Especializado en E-Commerce y Front-End
     </h2>
-    <div class="grid grid-cols-2 lg:grid-cols-[1.5fr_1fr]">
+    <div class="grid items-center md:grid-cols-[1.5fr_1fr]">
       <div>
-        <h3 class="mb-6 text-xl">¡Hola! Soy Noé Zavala,</h3>
-        <p class="text-xl mb-6">
-          Un desarrollador y programador con experiencia en <span
+        <p class="mb-6">
+          Cuento con habilidades en programación, <span
             class="text-blue-400 font-bold"
           >
             diseño y desarrollo</span
@@ -24,14 +25,15 @@ import Tech from '@/components/Tech.astro';
             class="text-blue-400 font-bold"
           >
             email marketing y anuncios</span
-          > en diversas plataformas.
+          > enfocados a la captación de clientes y el crecimiento del negocio.
         </p>
-        <p class="text-xl mb-6">
-          Disfruto creando soluciones digitales <span
-            class="text-blue-400 font-bold">optimizadas y accesibles</span
-          >, priorizando buenas prácticas que mejoran la <span
+        <p>
+          Disfruto contribuyendo al desarrollo de productos digitales
+          <span class="text-blue-400 font-bold"
+            >eficientes y fáciles de usar</span
+          >, siempre poniendo énfasis en las mejores prácticas que optimizan la <span
             class="text-blue-400 font-bold">experiencia de usuario (UX)</span
-          >.
+          > y la <span class="text-blue-400 font-bold"> accesibilidad</span>.
         </p>
       </div>
       <div class="flex flex-col items-center">
@@ -43,10 +45,12 @@ import Tech from '@/components/Tech.astro';
       </div>
     </div>
   </section>
-  <section>
-    <h2 class="mb-12 text-4xl font-bold">Experiencia</h2>
+  <section id="experiencia">
+    <h2 class="mb-12 font-bold border-b-2 border-slate-700 py-3">
+      Experiencia
+    </h2>
     <div class="mb-12">
-      <h3 class="text-3xl mb-6">Plataformas e-commerce y marketing</h3>
+      <h3 class="mb-6">Plataformas e-commerce y marketing</h3>
       <ul class="flex gap-6 flex-wrap">
         <Tech>Salesforce Marketing Cloud</Tech>
         <Tech>Adobe Experience Cloud</Tech>
@@ -59,29 +63,33 @@ import Tech from '@/components/Tech.astro';
       </ul>
     </div>
     <div class="mb-12">
-      <h3 class="text-3xl mb-6">Front End</h3>
+      <h3 class="mb-6">Front End</h3>
       <ul class="flex gap-6 flex-wrap">
+        <Tech>React</Tech>
+        <Tech>Next.js</Tech>
+        <Tech>Tailwind</Tech>
+        <Tech>Astro</Tech>
+        <Tech>Vue.js</Tech>
+        <Tech>Alpine.js</Tech>
+        <Tech>TypeScript</Tech>
         <Tech>HTML</Tech>
         <Tech>CSS</Tech>
         <Tech>JavaScript</Tech>
-        <Tech>TypeScript</Tech>
-        <Tech>Tailwind</Tech>
-        <Tech>Astro</Tech>
-        <Tech>React</Tech>
-        <Tech>Vue.js</Tech>
-        <Tech>Next.js</Tech>
-        <Tech>Alpine.js</Tech>
       </ul>
     </div>
     <div class="mb-12">
-      <h3 class="text-3xl mb-6">Back End</h3>
+      <h3 class="mb-6">Back End</h3>
       <ul class="flex gap-6 flex-wrap">
         <Tech>Node.js</Tech>
         <Tech>Express</Tech>
         <Tech>Headless CMS</Tech>
+        <Tech>Azure App Service</Tech>
+        <Tech>Cloudflare</Tech>
+        <Tech>Netlify</Tech>
         <Tech>NestJS</Tech>
+        <Tech>Supabase</Tech>
+        <Tech>SQL</Tech>
         <Tech>MongoDB</Tech>
-        <Tech>PostgreSQL</Tech>
       </ul>
     </div>
   </section>
@@ -89,6 +97,15 @@ import Tech from '@/components/Tech.astro';
 
 <style>
   h1 {
-    font-size: clamp(1.5rem, 10vw, 3.25rem);
+    font-size: clamp(1.5rem, 7vw, 2.75rem);
+  }
+  h2 {
+    font-size: clamp(1.25rem, 6vw, 2rem);
+  }
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+  p {
+    font-size: clamp(1.125rem, 4vw, 1.25rem);
   }
 </style>

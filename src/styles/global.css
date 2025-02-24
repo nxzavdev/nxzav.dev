@@ -1,7 +1,16 @@
 @import 'tailwindcss';
 
+html,
+body {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Rubik', monospace;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
 
 h1,
@@ -11,4 +20,14 @@ h4,
 a,
 li {
   font-family: 'JetBrains Mono', monospace;
+}
+
+::-webkit-scrollbar {
+  background-color: #020d1f;
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #334155;
+  border-radius: 6px;
 }
