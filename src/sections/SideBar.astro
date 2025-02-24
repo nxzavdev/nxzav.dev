@@ -12,15 +12,25 @@ import linkedinIcon from '@/assets/linkedin.svg';
     >
   </div>
   <nav class="flex items-center justify-center">
-    <ul class="flex gap-x-6 pb-6 lg:flex-col lg:gap-x-0 lg:gap-y-6">
+    <ul class="flex gap-x-6 pb-6 lg:flex-col lg:gap-x-0 lg:gap-y-8">
       <li>
         <a target="_blank" href="https://www.linkedin.com/in/nxzavala/">
-          <Image src={linkedinIcon} alt="Icono de Linkedin" width={32} />
+          <Image
+            src={linkedinIcon}
+            alt="Icono de Linkedin"
+            width={32}
+            class:list={'transition hover:scale-110'}
+          />
         </a>
       </li>
       <li>
         <a target="_blank" href="https://github.com/nxzavdev">
-          <Image src={githubIcon} alt="Icono de Github" width={32} />
+          <Image
+            src={githubIcon}
+            alt="Icono de Github"
+            width={32}
+            class:list={'transition hover:scale-110'}
+          />
         </a>
       </li>
     </ul>

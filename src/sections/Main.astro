@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
-import amicoImage from '@/assets/amico2.svg';
+import amicoImage from '@/assets/amico.svg';
 import Tech from '@/components/Tech.astro';
 ---
 
 <main class="min-h-screen lg:col-[2]">
-  <section class="mb-12 pt-2 lg:pt-36">
+  <section class="mb-12 pt-6 lg:pt-36">
     <h3 class="mb-6">¡Hola! Soy Noé,</h3>
     <h1 class="mb-6 font-bold leading-tight">
       Desarrollador Web Full Stack <br class="hidden lg:inline" /> y Analista de
@@ -16,18 +16,18 @@ import Tech from '@/components/Tech.astro';
     </h2>
     <div class="grid items-center md:grid-cols-[1.5fr_1fr]">
       <div>
-        <p class="mb-6">
-          Cuento con habilidades en programación, <span
+        <p class="mb-6 text-md lg:text-lg">
+          Con más de 3 años dedicado a la programación, <span
             class="text-blue-400 font-bold"
           >
-            diseño y desarrollo</span
-          > web, así como en la automatización de campañas de <span
+            diseño y desarrollo web</span
+          >, así como en la automatización de campañas de <span
             class="text-blue-400 font-bold"
           >
             email marketing y anuncios</span
           > enfocados a la captación de clientes y el crecimiento del negocio.
         </p>
-        <p>
+        <p class="text-md lg:text-lg">
           Disfruto contribuyendo al desarrollo de productos digitales
           <span class="text-blue-400 font-bold"
             >eficientes y fáciles de usar</span
@@ -51,7 +51,7 @@ import Tech from '@/components/Tech.astro';
     </h2>
     <div class="mb-12">
       <h3 class="mb-6">Plataformas e-commerce y marketing</h3>
-      <ul class="flex gap-6 flex-wrap">
+      <ul class="flex gap-3 lg:gap-4 flex-wrap">
         <Tech>Salesforce Marketing Cloud</Tech>
         <Tech>Adobe Experience Cloud</Tech>
         <Tech>Shopify</Tech>
@@ -64,7 +64,7 @@ import Tech from '@/components/Tech.astro';
     </div>
     <div class="mb-12">
       <h3 class="mb-6">Front End</h3>
-      <ul class="flex gap-6 flex-wrap">
+      <ul class="flex gap-3 lg:gap-4 flex-wrap">
         <Tech>React</Tech>
         <Tech>Next.js</Tech>
         <Tech>Tailwind</Tech>
@@ -79,7 +79,7 @@ import Tech from '@/components/Tech.astro';
     </div>
     <div class="mb-12">
       <h3 class="mb-6">Back End</h3>
-      <ul class="flex gap-6 flex-wrap">
+      <ul class="flex gap-3 lg:gap-4 flex-wrap">
         <Tech>Node.js</Tech>
         <Tech>Express</Tech>
         <Tech>Headless CMS</Tech>
@@ -105,7 +105,13 @@ import Tech from '@/components/Tech.astro';
   h3 {
     font-size: clamp(1.25rem, 5vw, 1.5rem);
   }
-  p {
-    font-size: clamp(1.125rem, 4vw, 1.25rem);
+  ul::after {
+    content: '';
+    flex: 10 1 auto;
+  }
+  @media (width >= 64rem) {
+    ul::after {
+      display: none;
+    }
   }
 </style>

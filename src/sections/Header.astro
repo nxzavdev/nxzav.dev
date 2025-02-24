@@ -8,18 +8,18 @@ import menuIcon from '@/assets/menu.svg';
 <header
   class="flex w-full justify-between lg:grid lg:grid-rows-3 lg:col-[1] lg:h-screen lg:sticky lg:top-0"
 >
-  <div class="flex py-6 lg:py-12">
+  <div class="flex py-4 lg:py-12">
     <a href="/">
       <Image
         src={nxzavLogo}
         alt="Noé Zavala"
-        class:list={'hover:rotate-90 transition ease-in-out w-12 lg:w-16'}
+        class:list={'hover:rotate-90 transition ease-in-out w-9 lg:w-16'}
       />
     </a>
   </div>
-  <div class="lg:hidden py-6">
+  <div class="lg:hidden py-4">
     <button id="menuBtn">
-      <Image src={menuIcon} alt="Menú" class:list={'w-12'} />
+      <Image src={menuIcon} alt="Menú" class:list={'w-9'} />
     </button>
   </div>
   <MobileMenu />
@@ -58,7 +58,6 @@ import menuIcon from '@/assets/menu.svg';
   const closeBtn = document.getElementById('closeBtn');
   const navMobile = document.getElementById('navMobile');
   const navLinks = navMobile?.querySelectorAll('a');
-  let active = false;
 
   function toggleMenu() {
     if (navMobile) navMobile.classList.toggle('active');
