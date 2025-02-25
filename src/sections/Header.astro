@@ -13,13 +13,13 @@ import menuIcon from '@/assets/menu.svg';
       <Image
         src={nxzavLogo}
         alt="Noé Zavala"
-        class:list={'hover:rotate-90 transition ease-in-out w-9 lg:w-16'}
+        class:list={'hover:rotate-90 transition ease-in-out w-12 lg:w-16'}
       />
     </a>
   </div>
   <div class="lg:hidden py-4">
     <button id="menuBtn">
-      <Image src={menuIcon} alt="Menú" class:list={'w-9'} />
+      <Image src={menuIcon} alt="Menú" class:list={'w-12'} />
     </button>
   </div>
   <MobileMenu />
@@ -34,7 +34,7 @@ import menuIcon from '@/assets/menu.svg';
       <li>
         <a
           class="px-2 py-2 hover:text-blue-400 text-md font-bold uppercase"
-          href="#experiencia">Experiencia</a
+          href="#skills">Skills</a
         >
       </li>
       <li>
@@ -60,13 +60,17 @@ import menuIcon from '@/assets/menu.svg';
   const navLinks = navMobile?.querySelectorAll('a');
 
   function toggleMenu() {
-    if (navMobile) navMobile.classList.toggle('active');
+    if (navMobile) {
+      navMobile.classList.toggle('active');
+      document.body.classList.toggle('no-scroll');
+    }
   }
   menuBtn?.addEventListener('click', toggleMenu);
   closeBtn?.addEventListener('click', toggleMenu);
   navLinks?.forEach((link) => {
     link.addEventListener('click', () => {
       navMobile?.classList.remove('active');
+      document.body.classList.remove('no-scroll');
     });
   });
 </script>

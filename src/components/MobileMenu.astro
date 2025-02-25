@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import menuIcon from '@/assets/menu.svg';
+import closeIcon from '@/assets/close.svg';
 ---
 
 <nav id="navMobile">
@@ -10,11 +10,11 @@ import menuIcon from '@/assets/menu.svg';
     type="button"
     class="absolute top-0 right-0 py-4 px-4"
   >
-    <Image src={menuIcon} alt="Icono menu" width={36} />
+    <Image src={closeIcon} alt="Icono menu" width={48} />
   </button>
   <ul class="flex flex-col gap-y-8 font-bold text-lg uppercase text-center">
     <li><a href="#">Inicio</a></li>
-    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
   </ul>
@@ -38,5 +38,10 @@ import menuIcon from '@/assets/menu.svg';
   }
   #navMobile.active {
     transform: translateX(0);
+  }
+  @media (width >= 64rem) {
+    #navMobile {
+      display: none;
+    }
   }
 </style>

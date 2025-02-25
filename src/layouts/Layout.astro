@@ -1,5 +1,8 @@
 ---
 import '@/styles/global.css';
+const title = 'Noé Zavala | Desarrollador Web';
+const description =
+  'Hola, soy Noé y desarrollo sitios web modernos, rápidos y optimizados. Ayudo a negocios y emprendedores a destacar con diseño atractivo y código limpio. ¿Necesitas una web de calidad? ¡Contáctame!';
 ---
 
 <!doctype html>
@@ -8,7 +11,16 @@ import '@/styles/global.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Noé Zavala | Desarrollador Web</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="contratar desarrollador web, busco programador, desarrollador web freelance, hacer una página, creación de páginas web, desarrollo de sitios web, mejorar la velocidad de mi sitio"
+    />
+    <meta name="author" content="Noé Zavala" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
   </head>
   <body class="bg-slate-900 text-stone-100 min-h-screen">
     <slot />
