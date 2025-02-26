@@ -6,20 +6,20 @@ import menuIcon from '@/assets/menu.svg';
 ---
 
 <header
-  class="flex w-full justify-between lg:grid lg:grid-rows-3 lg:col-[1] lg:h-screen lg:sticky lg:top-0"
+  class="flex w-full py-3 md:pt-8 lg:pt-0 justify-between lg:grid lg:grid-rows-3 lg:col-[1] lg:h-screen sticky top-0 bg-slate-900 shadow-md shadow-slate-900"
 >
-  <div class="flex py-4 lg:py-12">
+  <div class="flex lg:py-12">
     <a href="/">
       <Image
         src={nxzavLogo}
         alt="Noé Zavala"
-        class:list={'hover:rotate-90 transition ease-in-out w-12 lg:w-16'}
+        class:list={'hover:rotate-90 transition ease-in-out w-10 lg:w-14'}
       />
     </a>
   </div>
-  <div class="lg:hidden py-4">
+  <div class="lg:hidden flex justify-center items-center">
     <button id="menuBtn">
-      <Image src={menuIcon} alt="Menú" class:list={'w-12'} />
+      <Image src={menuIcon} alt="Menú" class:list={'w-10'} />
     </button>
   </div>
   <MobileMenu />

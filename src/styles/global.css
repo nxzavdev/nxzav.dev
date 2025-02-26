@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  font-family: 'Rubik', monospace;
+  font-family: 'Rubik', sans-serif;
 }
 
 body.no-scroll {
@@ -16,9 +16,7 @@ body.no-scroll {
 h1,
 h2,
 h3,
-h4,
-a,
-li {
+h4 {
   font-family: 'JetBrains Mono', monospace;
 }
 

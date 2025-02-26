@@ -1,17 +1,17 @@
 ---
 import { Image } from 'astro:assets';
-import amicoImage from '@/assets/amico.svg';
+import amicoImage from '@/assets/amico2.svg';
 import Tech from '@/components/Tech.astro';
 ---
 
 <main class="min-h-screen lg:col-[2]">
   <section class="mb-12 pt-6 lg:pt-36">
-    <h3 class="mb-6">¡Hola! Soy Noé,</h3>
-    <h1 class="mb-6 font-bold leading-tight">
+    <h3 class="mb-6 text-lg lg:text-xl">¡Hola! Soy Noé,</h3>
+    <h1 class="mb-6 text-2xl lg:text-4xl font-bold leading-tight">
       Desarrollador Web Full Stack <br class="hidden lg:inline" /> y Analista de
       Datos
     </h1>
-    <h2 class="mb-6 lg:mb-12 font-bold text-blue-400 leading-tight">
+    <h2 class="mb-6 text-xl lg:text-2xl lg:mb-8 font-bold text-blue-400 leading-tight">
       Especializado en E-Commerce y Front-End
     </h2>
     <div class="grid items-center md:grid-cols-[1.5fr_1fr]">
@@ -36,21 +36,19 @@ import Tech from '@/components/Tech.astro';
           > y la <span class="text-blue-400 font-bold"> accesibilidad</span>.
         </p>
       </div>
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center pt-6">
         <Image
           src={amicoImage}
           alt="Hombre sentado con una laptop en las manos"
-          width={280}
+          class:list={'w-[80%] lg:w-[300px]'}
         />
       </div>
     </div>
   </section>
   <section id="skills">
-    <h2 class="mb-12 font-bold border-b-2 border-slate-700 py-3">
-      Skills
-    </h2>
+    <h2 class="mb-12 text-2xl lg:text-3xl font-bold border-b-2 border-slate-700 py-3">Skills</h2>
     <div class="mb-12">
-      <h3 class="mb-6">Plataformas e-commerce y marketing</h3>
+      <h3 class="mb-6 text-xl lg:text-2xl">Plataformas e-commerce y marketing</h3>
       <ul class="flex gap-3 lg:gap-4 flex-wrap">
         <Tech>Salesforce Marketing Cloud</Tech>
         <Tech>Adobe Experience Cloud</Tech>
@@ -63,7 +61,7 @@ import Tech from '@/components/Tech.astro';
       </ul>
     </div>
     <div class="mb-12">
-      <h3 class="mb-6">Front End</h3>
+      <h3 class="mb-6 text-xl lg:text-2xl">Front End</h3>
       <ul class="flex gap-3 lg:gap-4 flex-wrap">
         <Tech>React</Tech>
         <Tech>Next.js</Tech>
@@ -78,7 +76,7 @@ import Tech from '@/components/Tech.astro';
       </ul>
     </div>
     <div class="mb-12">
-      <h3 class="mb-6">Back End</h3>
+      <h3 class="mb-6 text-xl lg:text-2xl">Back End</h3>
       <ul class="flex gap-3 lg:gap-4 flex-wrap">
         <Tech>Node.js</Tech>
         <Tech>Express</Tech>
@@ -95,15 +93,6 @@ import Tech from '@/components/Tech.astro';
 </main>
 
 <style>
-  h1 {
-    font-size: clamp(1.5rem, 7vw, 2.75rem);
-  }
-  h2 {
-    font-size: clamp(1.25rem, 6vw, 2rem);
-  }
-  h3 {
-    font-size: clamp(1.25rem, 5vw, 1.5rem);
-  }
   ul::after {
     content: '';
     flex: 10 1 auto;
