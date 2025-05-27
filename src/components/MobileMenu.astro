@@ -4,18 +4,21 @@ import closeIcon from '@/assets/close.svg';
 ---
 
 <nav id="navMobile">
+  <button aria-label="Modo Oscuro On/Off" id="themeBtn" type="button" class="absolute top-0 left-0 p-3">
+    
+  </button>
   <button
     aria-label="Cerrar menú"
     id="closeBtn"
     type="button"
-    class="absolute top-0 right-0 py-3 px-3"
+    class="absolute top-0 right-0 p-3"
   >
     <Image src={closeIcon} alt="Icono menu" width={40} />
   </button>
   <ul class="flex flex-col gap-y-8 font-bold text-lg uppercase text-center">
     <li><a href="#">Inicio</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#projects">Proyectos</a></li>
   </ul>
 </nav>
 
@@ -31,9 +34,10 @@ import closeIcon from '@/assets/close.svg';
     top: 0;
     right: 0;
     transform: translateX(100%);
-    background-color: #192543aa;
-    backdrop-filter: blur(16px);
+    background-color: #0009;
+    backdrop-filter: blur(6px);
     transition: transform 150ms ease-in;
+    z-index: 10;
   }
   #navMobile.active {
     transform: translateX(0);

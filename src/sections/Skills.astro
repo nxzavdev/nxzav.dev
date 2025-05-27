@@ -1,0 +1,85 @@
+---
+import TechIcon from '@/components/TechIcon.astro';
+import ShopifyIcon from '@/svg/ShopifyIcon.astro';
+import KlaviyoIcon from '@/svg/KlaviyoIcon.astro';
+import AdobeIcon from '@/svg/AdobeIcon.astro';
+import MailCIcon from '@/svg/MailCIcon.astro';
+import AmazonIcon from '@/svg/AmazonIcon.astro';
+import MercaLIcon from '@/svg/MercaLIcon.astro';
+---
+
+<section id="skills">
+  <h2 class="mb-6 text-2xl lg:text-3xl font-bold border-b-2 border-white py-3 text-white">
+    Skills
+  </h2>
+  <div class="mb-6">
+    <h3 class="mb-6 text-xl lg:text-2xl text-white">Front End</h3>
+    <ul class="flex gap-3 lg:gap-4 flex-wrap">
+      <TechIcon iconClass="devicon-html5-plain" label="HTML5" />
+      <TechIcon iconClass="devicon-css3-plain" label="CSS" />
+      <TechIcon iconClass="devicon-javascript-plain" label="JavaScript" />
+      <TechIcon iconClass="devicon-typescript-plain" label="TypeScript" />
+      <TechIcon iconClass="devicon-tailwindcss-plain" label="Tailwind CSS" />
+      <TechIcon iconClass="devicon-react-plain" label="React" />
+      <TechIcon
+        iconClass="devicon-nextjs-plain text-neutral-700"
+        colorClass=""
+        label="Next.js"
+      />
+      <TechIcon iconClass="devicon-astro-plain" label="Astro" />
+      <TechIcon iconClass="devicon-bootstrap-plain" label="Bootstrap" />
+      <TechIcon iconClass="devicon-vuejs-plain" label="Vue.js" />
+      <TechIcon iconClass="devicon-figma-plain" label="Figma" />
+    </ul>
+  </div>
+  <div class="mb-6">
+    <h3 class="mb-6 text-xl lg:text-2xl text-white">Back End</h3>
+    <ul class="flex gap-3 lg:gap-4 flex-wrap">
+      <TechIcon iconClass="devicon-nodejs-plain" label="Node.js" />
+      <TechIcon iconClass="devicon-express-original" label="Express.js" />
+      <TechIcon iconClass="devicon-nestjs-plain" label="NestJS" />
+      <TechIcon iconClass="devicon-netlify-plain" label="Netlify" />
+      <TechIcon iconClass="devicon-supabase-plain" label="Supabase" />
+      <TechIcon iconClass="devicon-postgresql-plain" label="PostgreSQL" />
+      <TechIcon iconClass="devicon-mongodb-plain" label="MongoDB" />
+    </ul>
+  </div>
+  <div class="mb-12">
+    <h3 class="mb-6 text-xl lg:text-2xl text-white">Plataformas E-Commerce y Marketing</h3>
+    <ul class="flex gap-3 lg:gap-4 flex-wrap">
+      <TechIcon iconClass="devicon-salesforce-plain" label="Salesforce MC" />
+      <TechIcon iconClass="devicon-wordpress-plain" label="WordPress" />
+      <TechIcon iconClass="devicon-woocommerce-plain" label="WooCommerce" />
+      <TechIcon iconClass="" label="Shopify">
+        <ShopifyIcon />
+      </TechIcon>
+      <TechIcon iconClass="" label="Klaviyo">
+        <KlaviyoIcon />
+      </TechIcon>
+      <TechIcon iconClass="" label="MailChimp">
+        <MailCIcon />
+      </TechIcon>
+      <TechIcon iconClass="" label="Amazon">
+        <AmazonIcon />
+      </TechIcon>
+      <TechIcon iconClass="" label="MercadoLibre">
+        <MercaLIcon />
+      </TechIcon>
+      <TechIcon iconClass="" label="Adobe Experience Cloud">
+        <AdobeIcon />
+      </TechIcon>
+    </ul>
+  </div>
+</section>
+
+<style>
+  ul::after {
+    content: '';
+    flex: 10 1 auto;
+  }
+  @media (width >= 64rem) {
+    ul::after {
+      display: none;
+    }
+  }
+</style>

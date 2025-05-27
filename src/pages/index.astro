@@ -2,18 +2,21 @@
 // import Footer from '@/sections/Footer.astro';
 import Header from '@/sections/Header.astro';
 import Layout from '@/layouts/Layout.astro';
-import Main from '@/sections/Main.astro';
+import Content from '@/sections/Content.astro';
 import SideBar from '@/sections/SideBar.astro';
+import MobileMenu from '@/components/MobileMenu.astro';
 ---
 
 <Layout>
-  <div id="site-wrapper" class="px-3 md:px-16 lg:px-8">
+  <div id="site-wrapper" class="relative z-0 px-3 md:px-16 lg:px-8">
+    <MobileMenu />
+    <!-- <div class="fixed h-full w-full -z-10"></div> -->
     <div
       id="content-wrapper"
       class="relative w-full mx-auto grid grid-cols-1 lg:max-w-7xl lg:grid-cols-[144px_auto_144px] lg:gap-10"
     >
       <Header />
-      <Main />
+      <Content />
       <SideBar />
     </div>
   </div>

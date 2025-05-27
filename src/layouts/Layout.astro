@@ -1,7 +1,7 @@
 ---
 import '@/styles/global.css';
 import '@fontsource/jetbrains-mono';
-import '@fontsource-variable/inter';
+import '@fontsource/bungee';
 const title = 'Noé Zavala | Desarrollador Web';
 const description =
   'Hola, soy Noé y desarrollo sitios web modernos, rápidos y optimizados. Ayudo a negocios y emprendedores a destacar con diseño atractivo y código limpio. ¿Necesitas una web de calidad? ¡Contáctame!';
@@ -15,16 +15,13 @@ const description =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta
-      name="keywords"
-      content="contratar desarrollador web, busco programador, desarrollador web freelance, hacer una página, creación de páginas web, desarrollo de sitios web, mejorar la velocidad de mi sitio"
-    />
     <meta name="author" content="Noé Zavala" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
   </head>
-  <body class="bg-slate-900 text-stone-100 min-h-screen">
+  <body class="bg-black text-neutral-400 min-h-screen">
     <slot />
   </body>
 </html>

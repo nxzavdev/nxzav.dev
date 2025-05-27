@@ -1,12 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import nxzavLogo from '@/assets/nxzav.svg';
-import MobileMenu from '@/components/MobileMenu.astro';
 import menuIcon from '@/assets/menu.svg';
 ---
 
 <header
-  class="flex w-full py-3 md:pt-8 lg:pt-0 justify-between lg:grid lg:grid-rows-3 lg:col-[1] lg:h-screen sticky top-0 bg-slate-900 border-b-1 border-b-slate-400/10"
+  class="flex w-full py-3 md:pt-8 lg:pt-0 justify-between lg:grid lg:grid-rows-3 lg:col-[1] lg:h-screen sticky top-0 bg-black/90 backdrop-blur-xs z-5"
 >
   <div class="flex lg:py-12">
     <a href="/">
@@ -22,25 +21,24 @@ import menuIcon from '@/assets/menu.svg';
       <Image src={menuIcon} alt="Menú" class:list={'w-10'} />
     </button>
   </div>
-  <MobileMenu />
   <nav class="hidden lg:flex items-center">
     <ul class="flex flex-col gap-y-6">
       <li>
         <a
-          class="px-2 py-2 hover:text-blue-400 text-md font-bold uppercase"
+          class="px-2 py-2 hover:text-white text-md uppercase"
           href="#">Inicio</a
         >
       </li>
       <li>
         <a
-          class="px-2 py-2 hover:text-blue-400 text-md font-bold uppercase"
+          class="px-2 py-2 hover:text-white text-md uppercase"
           href="#skills">Skills</a
         >
       </li>
       <li>
         <a
-          class="px-2 py-2 hover:text-blue-400 text-md font-bold uppercase"
-          href="#proyectos">Proyectos</a
+          class="px-2 py-2 hover:text-white text-md uppercase"
+          href="#projects">Proyectos</a
         >
       </li>
     </ul>

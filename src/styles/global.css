@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+/* bungee-latin-400-normal */
 
 html,
 body {
@@ -6,26 +7,22 @@ body {
 }
 
 body {
-  font-family: 'Inter Variable', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 body.no-scroll {
   overflow: hidden;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: 'Inter Variable', monospace;
+h1 {
+  font-family: 'Bungee', sans-serif;
 }
 
-::-webkit-scrollbar {
-  background-color: #020d1f;
+/* ::-webkit-scrollbar {
+  background-color: #222;
   width: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #334155;
-  border-radius: 6px;
-}
+  background-color: #666;
+} */
