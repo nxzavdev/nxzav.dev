@@ -8,11 +8,11 @@ interface Props {
 const { iconClass = '', label = '', colorClass = 'colored' } = Astro.props;
 ---
 
-<div
+<li
   class="select-none flex items-center justify-center gap-x-2 tech-icon-container bg-black p-2 rounded saturate-0 hover:text-black hover:bg-neutral-200 hover:saturate-100 transition"
 >
-  <slot/>
+  <slot />
   <i class={`${iconClass} ${colorClass} tech-icon-size text-2xl inline-block`}
   ></i>
   <span class="tech-label">{label}</span>
-</div>
+</li>
