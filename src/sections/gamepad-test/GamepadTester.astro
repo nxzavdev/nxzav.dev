@@ -1,0 +1,122 @@
+---
+import Gamepad from '@/components/Gamepad.astro';
+---
+
+<div id="gamepad-container" class="flex flex-col items-center justify-center">
+  <h3 id="status" class="mb-6 text-2xl text-center">No gamepad connected</h3>
+  <Gamepad />
+</div>
+
+<script>
+  const statusText = document.getElementById('status') as HTMLHeadingElement;
+
+  let controllerIndex: number | null = null;
+
+  let lastButtonStates: number[] = [];
+  let lastAxes: number[] = [];
+
+  window.addEventListener('gamepadconnected', (e) => {
+    const gamepad = e.gamepad;
+    controllerIndex = gamepad.index;
+    statusText.textContent = `Gamepad connected: ${gamepad.id}`;
+    lastButtonStates = gamepad.buttons.map((button) => button.value);
+    lastAxes = [...gamepad.axes];
+  });
+
+  window.addEventListener('gamepaddisconnected', () => {
+    statusText.textContent = 'Gamepad disconnected.';
+    controllerIndex = null;
+  });
+
+  function handleButtons(buttons: readonly GamepadButton[]) {
+    let anyChange = false;
+
+    for (let i = 0; i < buttons.length; i++) {
+      const button = buttons[i];
+      const buttonElement = document.getElementById(`controller-b${i}`);
+      const selectedClass = 'selected-button';
+      const buttonState = button.value;
+
+      // Check if button state has changed
+      if (lastButtonStates[i] !== buttonState) {
+        anyChange = true;
+        lastButtonStates[i] = buttonState;
+
+        if (buttonElement) {
+          if (buttonState > 0.5) {
+            buttonElement.classList.add(selectedClass);
+            buttonElement.style.filter = `brightness(${buttonState * 100}%)`;
+          } else {
+            buttonElement.classList.remove(selectedClass);
+            buttonElement.style.filter = 'brightness(100%)';
+          }
+        }
+      }
+    }
+
+    return anyChange;
+  }
+
+  function updateStick(
+    elementId: string,
+    leftRightAxis: number,
+    upDownAxis: number
+  ) {
+    const multiplier = 25;
+    const stickLeftRight = leftRightAxis * multiplier;
+    const stickUpDown = upDownAxis * multiplier;
+
+    const stick = document.getElementById(elementId);
+    const x = Number(stick?.dataset.originalXPosition);
+    const y = Number(stick?.dataset.originalYPosition);
+
+    stick?.setAttribute('cx', String(x + stickLeftRight));
+    stick?.setAttribute('cy', String(y + stickUpDown));
+  }
+
+  function handleAxes(axes: readonly number[]) {
+    let anyChange = false;
+
+    // Check and update the first stick (left-right & up-down axes)
+    if (
+      Math.abs(axes[0] - lastAxes[0]) > 0.1 ||
+      Math.abs(axes[1] - lastAxes[1]) > 0.1
+    ) {
+      anyChange = true;
+      lastAxes[0] = axes[0];
+      lastAxes[1] = axes[1];
+      updateStick('controller-b10', axes[0], axes[1]);
+    }
+
+    // Check and update the second stick (left-right & up-down axes)
+    if (
+      Math.abs(axes[2] - lastAxes[2]) > 0.1 ||
+      Math.abs(axes[3] - lastAxes[3]) > 0.1
+    ) {
+      anyChange = true;
+      lastAxes[2] = axes[2];
+      lastAxes[3] = axes[3];
+      updateStick('controller-b11', axes[2], axes[3]);
+    }
+
+    return anyChange;
+  }
+
+  function gameLoop() {
+    if (controllerIndex !== null) {
+      const gamepad = navigator.getGamepads()[controllerIndex];
+      if (!gamepad) return;
+
+      const buttonsChanged = handleButtons(gamepad.buttons);
+      const axesChanged = handleAxes(gamepad.axes);
+
+      if (buttonsChanged || axesChanged) {
+        console.log('rendering'); // Log only if something changed
+      }
+    }
+
+    requestAnimationFrame(gameLoop);
+  }
+
+  gameLoop();
+</script>

@@ -2,6 +2,9 @@
 import '@/styles/global.css';
 import '@fontsource/jetbrains-mono';
 import '@fontsource/bungee';
+import MobileMenu from '@/components/MobileMenu.astro';
+import Header from '@/components/Header.astro';
+import SideBar from '@/components/SideBar.astro';
 const title = 'Noé Zavala | Desarrollador Web';
 const description =
   'Hola, soy Noé y desarrollo sitios web modernos, rápidos y optimizados. Ayudo a negocios y emprendedores a destacar con diseño atractivo y código limpio. ¿Necesitas una web de calidad? ¡Contáctame!';
@@ -19,10 +22,24 @@ const description =
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#000000">
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <meta name="theme-color" content="#000000" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
   </head>
   <body class="bg-black text-neutral-400 min-h-screen">
-    <slot />
+    <MobileMenu />
+    <div id="site-wrapper" class="relative z-0 min-h-screen">
+      <div
+        id="content-wrapper"
+        class="relative w-full mx-auto grid grid-cols-1 lg:max-w-7xl lg:grid-cols-[144px_auto_144px] lg:gap-10"
+      >
+        <Header />
+        <slot />
+        <SideBar />
+      </div>
+    </div>
   </body>
 </html>

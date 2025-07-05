@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainContent from '../components/MainContent.astro';
+import GamepadTester from '../sections/gamepad-test/GamepadTester.astro';
+
+const title = 'Gamepad Test';
+const description =
+  'Un proyecto que permite probar los controles de un gamepad.';
+---
+
+<Layout title={title} description={description}>
+  <MainContent>
+    <h1
+      class="mb-12 text-center text-4xl lg:text-7xl font-bold bg-gradient-to-r from-red-500 to-yellow-400 text-transparent bg-clip-text"
+    >
+      Gamepad Test
+    </h1>
+    <GamepadTester />
+    <p>
+      Este bloque de código implementa la lógica para detectar y mostrar el
+      estado de un gamepad conectado usando la API de Gamepad de JavaScript. El
+      sistema registra eventos de conexión y desconexión del control, y mantiene
+      el seguimiento de los estados anteriores de botones y ejes (sticks
+      analógicos). Una mejora clave de rendimiento es que el código solo
+      actualiza la interfaz gráfica (por ejemplo, resaltando botones o moviendo
+      sticks en pantalla) cuando detecta un cambio real en el estado del
+      gamepad. Es decir, la función encargada de dibujar o renderizar se ejecuta
+      únicamente si algún botón o stick ha cambiado desde la última
+      comprobación, evitando así redibujos innecesarios y optimizando el uso de
+      recursos, lo que resulta en una experiencia más eficiente y fluida para el
+      usuario.
+    </p>
+  </MainContent>
+</Layout>
