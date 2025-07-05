@@ -25,14 +25,15 @@ const description =
     <Collapsible title="Descripción">
       <p class="p-6">
         Este proyecto implementa la lógica para detectar y mostrar el estado de
-        un gamepad conectado usando la API de Gamepad de JavaScript y un svg que
-        representa un control de gamepad.
+        los botones y ejes de un gamepad conectado usando la API de Gamepad
+        de JavaScript y un svg que representa el estado de forma gráfica.
         <br />
         <br />
-        Una mejora clave de rendimiento es que el código solo actualiza la interfaz
-        gráfica cuando detecta un cambio real en el estado del gamepad. El sistema
-        registra eventos de conexión y desconexión del control, y mantiene el seguimiento
-        de los estados anteriores de botones y ejes (sticks analógicos).
+        El código sólo actualiza la interfaz gráfica cuando detecta un cambio real
+        en el estado del gamepad, lo cual se traduce en una gran mejora de rendimiento.
+        <br />
+        El sistema registra eventos de conexión y desconexión del control, y mantiene
+        el seguimiento de los estados anteriores de botones y ejes (sticks analógicos).
       </p>
     </Collapsible>
   </MainContent>
