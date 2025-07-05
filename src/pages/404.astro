@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import MainContent from '@/components/MainContent.astro';
+---
+
+<Layout>
+  <MainContent>
+    <div class="flex flex-col justify-center">
+      <h1
+        class="mb-12 text-4xl lg:text-7xl font-bold bg-gradient-to-r from-red-500 to-yellow-400 text-transparent bg-clip-text"
+      >
+        404
+      </h1>
+      <h2 class="mb-6 text-2xl lg:text-4xl font-bold">¿Te has perdido?</h2>
+      <p class="text-lg">
+        No hay problema, puedes volver al inicio o buscar otra página.
+      </p>
+      <a href="/" class="text-lg text-white hover:text-neutral-400 transition"
+        >Volver al inicio</a
+      >
+    </div>
+  </MainContent>
+</Layout>
