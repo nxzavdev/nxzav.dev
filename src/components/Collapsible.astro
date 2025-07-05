@@ -1,0 +1,49 @@
+---
+const { title } = Astro.props;
+---
+
+<div class="w-full">
+  <div
+    class="item-header flex p-6 justify-between text-2xl hover:bg-neutral-950"
+  >
+    <h2>{ title }</h2>
+    <span id="arrow">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+      </svg>
+    </span>
+  </div>
+  <div class="item-content max-h-0 overflow-hidden transition-[max-height] bg-neutral-950">
+    <slot />
+  </div>
+</div>
+
+<script>
+  const accordionBtns = document.querySelectorAll('.item-header');
+  accordionBtns.forEach((accordion) => {
+    if (accordion instanceof HTMLElement) {
+      accordion.addEventListener('click', () => {
+        accordion.classList.toggle('bg-neutral-950');
+        accordion.classList.toggle('active');
+        const content = accordion.nextElementSibling;
+        if (content instanceof HTMLElement) {
+          if (content.style.maxHeight) {
+            content.style.maxHeight = '';
+          } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        }
+      });
+    }
+  });
+</script>

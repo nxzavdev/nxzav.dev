@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import MainContent from '../components/MainContent.astro';
 import GamepadTester from '../sections/gamepad-test/GamepadTester.astro';
+import Collapsible from '../components/Collapsible.astro';
 
 const title = 'Gamepad Test';
 const description =
@@ -15,19 +16,24 @@ const description =
     >
       Gamepad Test
     </h1>
+    <h3 id="status" class="mb-6 text-2xl text-center">
+      No se detectó ningún gamepad
+    </h3>
+
     <GamepadTester />
-    
-    <p>
-      Este proyecto implementa la lógica para detectar y mostrar el estado de
-      un gamepad conectado usando la API de Gamepad de JavaScript.
-      <br>
-      <br>
-      El sistema registra eventos de conexión y desconexión del control, y mantiene el
-      seguimiento de los estados anteriores de botones y ejes (sticks analógicos).
-      Una mejora clave de rendimiento es que el código solo actualiza la
-      interfaz gráfica (por ejemplo, resaltando botones o moviendo
-      sticks en pantalla) cuando detecta un cambio real en el estado del
-      gamepad.
-    </p>
+
+    <Collapsible title="Descripción">
+      <p class="p-6">
+        Este proyecto implementa la lógica para detectar y mostrar el estado de
+        un gamepad conectado usando la API de Gamepad de JavaScript y un svg que
+        representa un control de gamepad.
+        <br />
+        <br />
+        Una mejora clave de rendimiento es que el código solo actualiza la interfaz
+        gráfica cuando detecta un cambio real en el estado del gamepad. El sistema
+        registra eventos de conexión y desconexión del control, y mantiene el seguimiento
+        de los estados anteriores de botones y ejes (sticks analógicos).
+      </p>
+    </Collapsible>
   </MainContent>
 </Layout>

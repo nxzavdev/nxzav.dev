@@ -1,25 +1,35 @@
 ---
-// import { Image } from 'astro:assets';
-// import gamepadPage from '@/assets/gamepad-page.png';
+import { Image } from 'astro:assets';
+import gamepadPage from '@/assets/gamepad.webp';
 ---
 
-<section id="projects">
+<section id="projects" class="mb-12">
   <h2
     class="mb-6 text-2xl lg:text-3xl font-bold border-b-2 border-white py-3 text-white"
   >
     Proyectos
   </h2>
   <div class="min-h-[20rem]">
-    <ul>
-      <li>
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <li class="border border-neutral-700 p-6">
         <h3
           class="mb-4 text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-500 to-yellow-400 text-transparent bg-clip-text"
         >
           Gamepad Test
         </h3>
-        <p class="mb-4">Un proyecto que permite probar los controles de un gamepad.</p>
-        <!-- <Image src={gamepadPage} alt="" /> -->
-        <a class="text-white" href="/gamepad-test">Ver proyecto</a>
+        <p class="mb-4">
+          Un proyecto que permite probar los controles de un gamepad.
+        </p>
+        <a
+          aria-label="Ir al proyecto"
+          href="/gamepad-test"
+          class="block overflow-hidden"
+          ><Image
+            src={gamepadPage}
+            alt="Gamepad Test Project"
+            class:list={'w-full lg:w-sm hover:scale-120 transition ease-in-out'}
+          />
+        </a>
       </li>
     </ul>
   </div>
