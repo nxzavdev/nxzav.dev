@@ -1,0 +1,48 @@
+---
+import Project from '@/components/Project.astro';
+import gamepadImage from '@/assets/gamepad.webp';
+import keyboardImage from '@/assets/keyboard.webp';
+
+interface Project {
+  title: string;
+  image: ImageMetadata;
+  href: string;
+  description: string;
+}
+
+const Projects: Project[] = [
+  {
+    title: 'Gamepad Test',
+    image: gamepadImage,
+    href: '/gamepad-test',
+    description:
+      'Conecta tu Gamepad y míralo cobrar vida en tiempo real.',
+  },
+  {
+    title: 'Typing Test',
+    image: keyboardImage,
+    href: '/typing-test',
+    description:
+      '¿Te crees rápido? Prueba tu velocidad de escritura con este proyecto.',
+  }
+];
+---
+
+<section id="projects" class="mb-12">
+  <h2
+    class="mb-6 text-2xl lg:text-3xl font-bold border-b-2 border-white py-3 text-white"
+  >
+    Proyectos
+  </h2>
+  <div class="min-h-[20rem]">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {Projects.map((project) => (
+        <Project title={project.title} image={project.image} href={project.href}>
+          <p class="mb-4">
+            {project.description}
+          </p>
+        </Project>
+      ))}
+    </ul>
+  </div>
+</section>

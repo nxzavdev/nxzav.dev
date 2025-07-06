@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainContent from '../components/MainContent.astro';
+import Collapsible from '../components/Collapsible.astro';
+const title = 'Typing Test';
+const description = 'Test de velocidad de escritura';
+---
+
+<Layout title={title} description={description}>
+  <MainContent>
+    <h1
+      class="mb-12 text-center text-4xl lg:text-7xl font-bold bg-gradient-to-r from-red-500 to-yellow-400 text-transparent bg-clip-text"
+    >
+      Typing Test
+    </h1>
+    <h3 id="status" class="mb-6 text-2xl text-center">
+      Presiona "Enter" para comenzar
+    </h3>
+    <section id="typingTest" class="my-6 lg:my-16">
+      <input
+        id="wordsInput"
+        class="w-full text-lg lg:text-2xl"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        data-gramm="false"
+        data-gramm_editor="false"
+        data-enable-grammarly="false"
+        list="autocompleteOff"
+        spellcheck="false"
+      />
+      <div
+        id="words"
+        class="mb-16 w-full flex flex-row justify-start gap-2 flex-wrap text-lg lg:text-2xl"
+      >
+      </div>
+      <div id="results" class="flex flex-row justify-center gap-4">
+        <p id="wpm" class="text-lg lg:text-2xl">
+          WPM: <span id="wpmValue">0</span>
+        </p>
+        <p id="cpm" class="text-lg lg:text-2xl">
+          CPM: <span id="cpmValue">0</span>
+        </p>
+        <p id="acc" class="text-lg lg:text-2xl">
+          Accuracy: <span id="accValue">0</span>
+        </p>
+      </div>
+    </section>
+    <Collapsible title="Descripción">
+      <p class="p-6">
+        Este proyecto permite probar la velocidad de escritura del usuario.
+        <br />
+        <br />
+        Detecta la entrada del usuario y compara con el texto original para calcular
+        la velocidad de escritura. También detecta errores de escritura, calculando
+        la precisión y mostrando el resultado en la pantalla.
+      </p>
+    </Collapsible>
+  </MainContent>
+</Layout>
+
+<style>
+  .correct {
+    color: #fff;
+  }
+
+  .wrong {
+    color: #f14040;
+  }
+
+  .word.active {
+    background-color: #ccc;
+    color: #000;
+  }
+
+  .word.wrong {
+    background-color: #f14040;
+    color: #fff;
+  }
+
+  .word.correct {
+    background-color: #2ae76f;
+    color: #fff;
+  }
+</style>
+
+<script>
+  const wordsInput = document.getElementById('wordsInput') as HTMLInputElement;
+  const statusText = document.getElementById('status') as HTMLHeadingElement;
+  const text =
+    'apple banana car dog elephant flower game house juice kitchen laptop mouse apple banana car dog elephant flower game house juice kitchen laptop mouse apple banana car dog elephant flower game house juice kitchen laptop mouse';
+  const wordsArray = text.split(' ');
+  let currentWordIndex = 0;
+
+  function addWordsWithLetters() {
+    const wordsContainer = document.getElementById('words');
+
+    wordsArray.forEach((word: string) => {
+      const wordDiv = document.createElement('div');
+      wordDiv.classList.add('word');
+
+      word.split('').forEach((letter: string) => {
+        const letterSpan = document.createElement('span');
+        letterSpan.classList.add('letter');
+        letterSpan.textContent = letter;
+        wordDiv.appendChild(letterSpan);
+      });
+
+      if (wordsContainer) wordsContainer.appendChild(wordDiv);
+    });
+  }
+
+  addWordsWithLetters();
+
+  function checkWord() {
+    const currentWord = wordsArray[currentWordIndex];
+    const typedValue = wordsInput.value?.trim();
+
+    if (typedValue === currentWord) {
+      statusText.textContent = 'correct';
+    } else {
+      statusText.textContent = 'wrong';
+    }
+
+    currentWordIndex++;
+
+    if (currentWordIndex < wordsArray.length) {
+      wordsInput.value = '';
+      wordsInput.focus();
+    } else {
+      statusText.textContent = 'All completed';
+    }
+  }
+
+  wordsInput.addEventListener('keydown', (event: KeyboardEvent) => {
+    if (event.key === ' ' || event.key === 'Spacebar') {
+      event.preventDefault();
+      if (wordsInput.value.trim() === '') {
+        statusText.textContent = 'Not input entered';
+      } else {
+        checkWord();
+      }
+    }
+  });
+</script>
