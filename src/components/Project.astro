@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+interface Props {
+  title: string;
+  image: ImageMetadata;
+  href: string;
+}
+const { title = '', image, href } = Astro.props as Props;
+---
+
+<li
+  class="border border-neutral-700 hover:border-white p-4 lg:p-6 transition-all"
+>
+  <h3 class="mb-4 text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-500 to-yellow-400 text-transparent bg-clip-text">
+    {title}
+  </h3>
+  <slot />
+  <a aria-label="Ir al proyecto" href={href} class="flex justify-center overflow-hidden">
+    <Image
+      src={image}
+      alt={title}
+      class:list={'w-full lg:w-sm hover:scale-110 transition ease-in-out'}
+    />
+  </a>
+</li>

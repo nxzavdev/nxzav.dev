@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainContent from '../components/MainContent.astro';
+import Collapsible from '../components/Collapsible.astro';
+const title = 'Typing Test';
+const description = 'Test de velocidad de escritura';
+---
+
+<Layout title={title} description={description}>
+  <MainContent>
+    <h1
+      class="mb-12 text-center text-4xl lg:text-7xl font-bold bg-gradient-to-r from-red-500 to-yellow-400 text-transparent bg-clip-text"
+    >
+      Typing Test
+    </h1>
+    <h3 id="status" class="mb-6 text-xl lg:text-3xl text-center"></h3>
+    <section id="typingTest" class="relative my-6 p-6 lg:my-16">
+      <time id="timer" class="block mb-6 text-2xl lg:text-3xl text-orange-400"
+      ></time>
+      <input
+        id="userInput"
+        autofocus
+        class="absolute scale-0 top-0 -z-50 pointer-events-none border"
+        type="text"
+        autocomplete="off"
+        autocapitalize="off"
+        autocorrect="off"
+        data-gramm="false"
+        data-gramm_editor="false"
+        data-enable-grammarly="false"
+        spellcheck="false"
+      />
+      <div
+        id="words"
+        class="mb-16 w-full flex flex-wrap text-2xl gap-3 text-neutral-700"
+      >
+      </div>
+      <div id="results" class="flex flex-row justify-center gap-4">
+        <p id="wpm" class="text-lg lg:text-2xl">
+          WPM: <span id="wpmValue">0</span>
+        </p>
+        <p id="cpm" class="text-lg lg:text-2xl">
+          CPM: <span id="cpmValue">0</span>
+        </p>
+        <p id="acc" class="text-lg lg:text-2xl">
+          Accuracy: <span id="accValue">0</span>
+        </p>
+      </div>
+    </section>
+    <Collapsible title="Descripción">
+      <p class="p-6">
+        Este proyecto permite probar la velocidad de escritura del usuario.
+        <br />
+        <br />
+        Detecta la entrada del usuario y la compara con el texto original para detectar
+        aciertos y errores de escritura, calculando las palabras por minuto (WPM),
+        caracteres por minuto (CPM) y la precisión (ACC), mostrando el resultado
+        en la pantalla.
+      </p>
+    </Collapsible>
+  </MainContent>
+</Layout>
+
+<style></style>
+
+<script>
+  const $input = document.getElementById('userInput') as HTMLInputElement;
+  const $status = document.getElementById('status') as HTMLHeadingElement;
+  const $words = document.getElementById('words') as HTMLDivElement;
+  const $timer = document.getElementById('timer') as HTMLTimeElement;
+  const mockText =
+    'apple banana car dog elephant flower game house juice kitchen banana car dog elephant flower game house juice kitchen car dog elephant flower game house juice kitchen';
+  const INITIAL_TIME = 30;
+
+  let words = [];
+  let currentTime = INITIAL_TIME;
+
+  function setStatusText(message: string) {
+    $status.textContent = message;
+  }
+
+  function addWordsWithLetters(text: string) {
+    const wordsArray = text.split(' ');
+
+    wordsArray.forEach((word: string, wordIndex: number) => {
+      const wordDiv = document.createElement('div');
+      wordDiv.classList.add('word');
+      wordDiv.dataset.wordIndex = wordIndex.toString();
+
+      word.split('').forEach((letter: string, letterIndex: number) => {
+        const letterSpan = document.createElement('span');
+        letterSpan.classList.add('letter');
+        letterSpan.textContent = letter;
+        letterSpan.dataset.letterIndex = letterIndex.toString();
+        wordDiv.appendChild(letterSpan);
+      });
+
+      if ($words) $words.appendChild(wordDiv);
+    });
+  }
+
+  function initGame() {
+    words = mockText.split(' ');
+    currentTime = INITIAL_TIME;
+
+    $timer.textContent = currentTime.toString();
+
+    addWordsWithLetters(mockText);
+
+    const $firstWord = $words.querySelector('.word') as HTMLDivElement;
+    $firstWord.classList.add('active');
+    $firstWord.querySelector('.letter')?.classList.add('active');
+
+    const intervalId = setInterval(() => {
+      currentTime--;
+      $timer.textContent = currentTime.toString();
+
+      if (currentTime === 0) {
+        clearInterval(intervalId);
+        gameOver();
+      }
+    }, 1000);
+  }
+
+  function initEvents() {
+    document.addEventListener('keydown', () => {
+      $input.focus();
+    });
+    $input.addEventListener('keydown', onKeyDown);
+    $input.addEventListener('keyup', onKeyUp);
+  }
+
+  function onKeyDown(event: KeyboardEvent) {
+    const $currentWord = $words.querySelector('.word.active') as HTMLDivElement;
+    const $currentLetter = $currentWord.querySelector(
+      '.letter.active'
+    ) as HTMLSpanElement;
+
+    const { key } = event;
+    if (key === ' ') {
+      event.preventDefault();
+
+      if ($input.value.length === 0) return;
+
+      const $nextWord = $currentWord.nextElementSibling as HTMLDivElement;
+      const $nextLetter = $nextWord.querySelector('.letter') as HTMLSpanElement;
+
+      $currentWord.classList.remove('active');
+      $currentLetter.classList.remove('active');
+
+      $nextWord.classList.add('active');
+      $nextLetter.classList.add('active');
+
+      $input.value = '';
+
+      const hasMissingLetter =
+        $currentWord.querySelectorAll('.letter:not(.correct)').length > 0;
+      const classToAdd = hasMissingLetter ? 'wrong' : 'correct';
+      $currentWord.classList.add(classToAdd);
+      return;
+    }
+
+    if (key === 'Backspace') {
+      const $prevWord = $currentWord.previousElementSibling as HTMLDivElement;
+      const $prevLetter = $currentLetter.previousElementSibling as HTMLSpanElement;
+
+      if (!$prevWord && !$prevLetter) {
+        event.preventDefault();
+        return;
+      }
+    }
+  }
+
+  function onKeyUp() {
+    const $currentWord = $words.querySelector('.word.active') as HTMLDivElement;
+    const $currentLetter = $currentWord.querySelector(
+      '.letter.active'
+    ) as HTMLSpanElement;
+
+    const currentWord = $currentWord.innerText.trim();
+    $input.maxLength = currentWord.length;
+    console.log({ value: $input.value, currentWord });
+
+    const $allLetters = $currentWord.querySelectorAll(
+      '.letter'
+    ) as NodeListOf<HTMLSpanElement>;
+
+    $allLetters.forEach(($letter) =>
+      $letter.classList.remove('correct', 'wrong')
+    );
+
+    $input.value.split('').forEach((char, index) => {
+      const $currentLetter = $allLetters[index];
+      const letterToCompare = currentWord[index];
+
+      const isCorrect = char === letterToCompare;
+      $currentLetter.classList.add(isCorrect ? 'correct' : 'wrong');
+    });
+
+    $currentLetter.classList.remove('active');
+    const currentInputLength = $input.value.length;
+    const $nextActiveLetter = $allLetters[currentInputLength];
+
+    if ($nextActiveLetter) {
+      $nextActiveLetter.classList.add('active');
+    } else {
+      $currentLetter.classList.add('active');
+    }
+  }
+
+  function gameOver() {
+    setStatusText('Juego terminado');
+  }
+
+  setStatusText('Comienza a escribir');
+  initGame();
+  initEvents();
+</script>
