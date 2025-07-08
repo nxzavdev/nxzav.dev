@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 :root {
-  --font-jetbrains-mono: 'JetBrains Mono', monospace;
+  --font-jetbrains: 'JetBrains Mono', monospace;
   --font-bungee: 'Bungee', sans-serif;
 }
 
@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  font-family: var(--font-jetbrains-mono);
+  font-family: var(--font-jetbrains);
 }
 
 body.no-scroll {
@@ -28,12 +28,12 @@ h6 {
 }
 
 ::-webkit-scrollbar {
-  background-color: #222;
-  width: 12px;
+  background-color: #222222;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #fff;
+  background-color: #444;
 }
 
 .word {
