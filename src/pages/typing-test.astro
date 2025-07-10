@@ -13,11 +13,12 @@ const description = 'Test de velocidad de escritura';
     >
       Typing Test
     </h1>
-    <h3 id="status" class="mb-6 text-xl lg:text-3xl text-center"></h3>
+    <h2 id="status" class="mb-6 text-xl lg:text-3xl text-center text-neutral-300"></h2>
     <section id="typingTest" class="relative my-6 p-6 lg:my-16">
       <time id="timer" class="block mb-6 text-2xl lg:text-3xl text-orange-400"
       ></time>
       <input
+        aria-label="Test input"
         id="userInput"
         autofocus
         class="absolute scale-0 top-0 -z-50 pointer-events-none border"
@@ -32,17 +33,19 @@ const description = 'Test de velocidad de escritura';
       />
       <div
         id="words"
-        class="mb-16 w-full flex flex-wrap text-2xl gap-3 text-neutral-700 select-none"
+        translate="no"
+        class="mb-16 w-full flex flex-wrap text-2xl gap-3 text-neutral-500 select-none"
       >
       </div>
-      <div class="my-6 flex justify-center">
+      <div class="my-6 flex justify-center gap-4">
         <button
+          aria-label="Restart game"
           type="button"
           id="restartBtn"
           class="p-2 rounded-full hover:cursor-pointer hover:bg-neutral-800"
         >
           <svg
-            class="block text-orange-400 w-6 h-6"
+            class="block w-6 h-6"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             stroke="currentColor"
@@ -55,16 +58,31 @@ const description = 'Test de velocidad de escritura';
               d="M21 3v5m0 0h-5m5 0-3-2.708A9 9 0 1 0 20.777 14"></path>
           </svg>
         </button>
+        <button
+          aria-label="Toggle language"
+          type="button"
+          id="toggleLangBtn"
+          class="p-2 rounded hover:cursor-pointer hover:bg-neutral-800"
+        >
+          ENGLISH
+        </button>
       </div>
-      <div id="results" class="hidden flex-row justify-center gap-4">
-        <p id="wpm" class="text-lg lg:text-2xl">
-          WPM: <span id="wpmValue">0</span>
+      <div
+        id="results"
+        class="hidden flex-col lg:flex-row justify-center gap-4"
+      >
+        <h3 class="mb-6 text-xl lg:text-3xl">Stats</h3>
+        <p id="grossWpm" class="text-lg lg:text-2xl">
+          Palabras por minuto (Gross WPM): <span id="grossWpmValue">0</span>
+        </p>
+        <p id="netWpm" class="text-lg lg:text-2xl">
+          Palabras por minuto netas (Net WPM): <span id="netWpmValue">0</span>
         </p>
         <p id="cpm" class="text-lg lg:text-2xl">
-          CPM: <span id="cpmValue">0</span>
+          Caracteres por minuto (CPM): <span id="cpmValue">0</span>
         </p>
         <p id="acc" class="text-lg lg:text-2xl">
-          Accuracy: <span id="accValue">0</span>%
+          Precisión (ACC): <span id="accValue">0</span>%
         </p>
       </div>
     </section>
@@ -77,28 +95,39 @@ const description = 'Test de velocidad de escritura';
         aciertos y errores de escritura, calculando las palabras por minuto (WPM),
         caracteres por minuto (CPM) y la precisión (ACC), mostrando el resultado
         en la pantalla.
+        <br />
+        <br />
+        Permite reinicar el juego a través del botón "Restart game". Cuenta con un conjunto
+        de las palabras más comunes en español e inglés, y permite cambiar el idioma
+        a través del botón "Toggle Language".
       </p>
     </Collapsible>
   </MainContent>
 </Layout>
 
-<style></style>
-
 <script>
-  import { words as INITIAL_WORDS } from '@/data/words';
+  import { englishWords, spanishWords } from '@/data/words';
   const $input = document.getElementById('userInput') as HTMLInputElement;
   const $status = document.getElementById('status') as HTMLHeadingElement;
   const $words = document.getElementById('words') as HTMLDivElement;
   const $timer = document.getElementById('timer') as HTMLTimeElement;
   const $results = document.getElementById('results') as HTMLDivElement;
-  const $wpm = document.getElementById('wpmValue') as HTMLSpanElement;
+  const $grossWpm = document.getElementById('grossWpmValue') as HTMLSpanElement;
+  const $netWpm = document.getElementById('netWpmValue') as HTMLSpanElement;
   const $cpm = document.getElementById('cpmValue') as HTMLSpanElement;
   const $acc = document.getElementById('accValue') as HTMLSpanElement;
+
   const $restartBtn = document.getElementById(
     'restartBtn'
   ) as HTMLButtonElement;
+  const $toggleLangBtn = document.getElementById(
+    'toggleLangBtn'
+  ) as HTMLButtonElement;
   const INITIAL_TIME = 30;
   const TEXT_LENGTH = 32;
+
+  let INITIAL_WORDS = spanishWords;
+  let currentLanguage = 'spanish';
 
   let currentTime = INITIAL_TIME;
   let gameIsRunning = false;
@@ -130,15 +159,14 @@ const description = 'Test de velocidad de escritura';
   }
 
   function initGame() {
-    const testWords = INITIAL_WORDS.toSorted(() => Math.random() - 0.5).slice(
-      0,
-      TEXT_LENGTH
-    );
+    const testWords = INITIAL_WORDS.toSorted(() => Math.random() - 0.5)
+      .slice(0, TEXT_LENGTH)
+      .join(' ');
     currentTime = INITIAL_TIME;
 
     $timer.textContent = currentTime.toString();
 
-    addWordsWithLetters(testWords.join(' '));
+    addWordsWithLetters(testWords);
 
     const $firstWord = $words.querySelector('.word') as HTMLDivElement;
     $firstWord.classList.add('active');
@@ -160,6 +188,20 @@ const description = 'Test de velocidad de escritura';
     }, 1000);
   }
 
+  function toggleLanguage() {
+    if (currentLanguage === 'spanish') {
+      INITIAL_WORDS = englishWords;
+      currentLanguage = 'english';
+      $toggleLangBtn.textContent = 'ESPAÑOL';
+    } else {
+      INITIAL_WORDS = spanishWords;
+      currentLanguage = 'spanish';
+      $toggleLangBtn.textContent = 'ENGLISH';
+    }
+    gameOver();
+    startGame();
+  }
+
   function initEvents() {
     $input.addEventListener('keydown', onKeyDown);
     $input.addEventListener('input', onInput);
@@ -171,6 +213,7 @@ const description = 'Test de velocidad de escritura';
         restartGame();
       }
     });
+    $toggleLangBtn.addEventListener('click', toggleLanguage);
   }
 
   function onKeyDown(event: KeyboardEvent) {
@@ -266,7 +309,7 @@ const description = 'Test de velocidad de escritura';
     $results.classList.add('hidden');
     initTimer();
     initGame();
-    setStatusText('¡Date prisa!');
+    setStatusText('¡Comienza a escribir!');
   }
 
   function gameOver() {
@@ -276,11 +319,12 @@ const description = 'Test de velocidad de escritura';
       Math.round((endTime - startTime) / 1000)
     );
 
-    const { wpm, cpm, accuracy } = getStats(timeSpentSeconds);
+    const { grossWpm, netWpm, cpm, accuracy } = getStats(timeSpentSeconds);
 
     setStatusText('Juego terminado');
 
-    $wpm.textContent = wpm.toString();
+    $grossWpm.textContent = grossWpm.toString();
+    $netWpm.textContent = netWpm.toString();
     $cpm.textContent = cpm.toString();
     $acc.textContent = accuracy.toString();
 
@@ -295,6 +339,7 @@ const description = 'Test de velocidad de escritura';
     $words.innerHTML = '';
     $timer.textContent = INITIAL_TIME.toString();
     currentTime = INITIAL_TIME;
+    console.log('game over');
   }
 
   function restartGame() {
@@ -302,15 +347,25 @@ const description = 'Test de velocidad de escritura';
     startGame();
   }
 
+  function getIncorrectWords() {
+    let totalIncorrectWords = 0;
+    const $incorrectWors = $words.querySelectorAll('.word.wrong');
+    $incorrectWors.forEach(($wordDiv) => {
+      totalIncorrectWords++;
+    });
+
+    return totalIncorrectWords;
+  }
+
   function getCorrectCharsAndWords() {
     let correctChars = 0;
     let correctWords = 0;
     const wordDivs = $words.querySelectorAll('.word');
-    wordDivs.forEach((wordDiv) => {
-      const letters = wordDiv.querySelectorAll('.letter');
+    wordDivs.forEach(($wordDiv) => {
+      const letters = $wordDiv.querySelectorAll('.letter');
       let wordIsCorrect = true;
-      letters.forEach((letter) => {
-        if (letter.classList.contains('correct')) {
+      letters.forEach(($letter) => {
+        if ($letter.classList.contains('correct')) {
           correctChars++;
         } else {
           wordIsCorrect = false;
@@ -323,33 +378,54 @@ const description = 'Test de velocidad de escritura';
 
   function getTotalTypedChars() {
     let totalChars = 0;
-    let totalWords = 0;
-    const wordDivs = $words.querySelectorAll('.word');
-    wordDivs.forEach((wordDiv) => {
-      totalWords++;
-      const letters = wordDiv.querySelectorAll('.letter');
-      letters.forEach((letter) => {
+    let totalCharNSpaces = 0;
+    let totalSpaces = 0;
+    const $wordDivs = $words.querySelectorAll('.word');
+
+    $wordDivs.forEach(($wordDiv) => {
+      if (
+        $wordDiv.classList.contains('correct') ||
+        $wordDiv.classList.contains('wrong')
+      ) {
+        totalSpaces++;
+      }
+      const $letters = $wordDiv.querySelectorAll('.letter');
+      $letters.forEach(($letter) => {
         if (
-          letter.classList.contains('correct') ||
-          letter.classList.contains('wrong')
+          $letter.classList.contains('correct') ||
+          $letter.classList.contains('wrong')
         ) {
           totalChars++;
         }
       });
     });
-    return { totalChars, totalWords };
+    totalCharNSpaces += totalChars;
+    totalCharNSpaces += totalSpaces;
+    return { totalChars, totalCharNSpaces };
   }
 
   function getStats(timeSpentSeconds: number) {
-    const { correctChars, correctWords } = getCorrectCharsAndWords();
-    const { totalChars, totalWords } = getTotalTypedChars();
+    const incorrectWords = getIncorrectWords();
+    const { correctChars } = getCorrectCharsAndWords();
+    const { totalChars, totalCharNSpaces } = getTotalTypedChars();
     const minutes = timeSpentSeconds / 60;
-    const incorrectWords = totalWords - correctWords;
-    const wpm = minutes > 0 ? Math.round(((totalChars / 5) - incorrectWords) / minutes) : 0;
+    const grossWpm = Math.round(totalCharNSpaces / (5 * minutes));
+    const netWpm =
+      minutes > 0 ? Math.round(grossWpm - incorrectWords / minutes) : 0;
     const cpm = minutes > 0 ? Math.round(correctChars / minutes) : 0;
     const accuracy =
       totalChars > 0 ? Math.round((correctChars / totalChars) * 100) : 0;
-    return { wpm, cpm, accuracy };
+    console.log({
+      totalChars,
+      correctChars,
+      incorrectWords,
+      minutes,
+      grossWpm,
+      netWpm,
+      cpm,
+      accuracy,
+    });
+    return { grossWpm, netWpm, cpm, accuracy };
   }
 
   setStatusText('Comienza a escribir');
