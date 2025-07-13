@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 :root {
-  --font-jetbrains: 'JetBrains Mono', monospace;
-  --font-bungee: 'Bungee', sans-serif;
+  --font-mono: 'Roboto Mono Variable', monospace;
+  --font-title: 'Bungee', sans-serif;
 }
 
 html,
@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  font-family: var(--font-jetbrains);
+  font-family: var(--font-mono);
 }
 
 body.no-scroll {
@@ -24,7 +24,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-bungee);
+  font-family: var(--font-title);
 }
 
 ::-webkit-scrollbar {

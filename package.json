@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/roboto-mono": "^5.2.6",
     "@fontsource/bungee": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.1.2",
     "@tailwindcss/vite": "^4.0.7",

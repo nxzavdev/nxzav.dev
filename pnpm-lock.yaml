@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource-variable/roboto-mono':
+        specifier: ^5.2.6
+        version: 5.2.6
       '@fontsource/bungee':
         specifier: ^5.2.5
         version: 5.2.5
@@ -212,6 +215,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource-variable/roboto-mono@5.2.6':
+    resolution: {integrity: sha512-U9iAWyACe0BkE8CpzBvvQnGSoFKXwuVmwC2zT3u66xe5EXfGsWmKtem+4xQHgvXazC6wq/m3hPJ5jjqgIkkTUQ==}
 
   '@fontsource/bungee@5.2.5':
     resolution: {integrity: sha512-fGAlOFSWFGeCwcnOuD1f6ou0059XVxsR5IvW+2MbQF9qmsKmgHiy1A4I97unrUqaQ9ZoDTRQzCDcqgKQHdV8LQ==}
@@ -1680,6 +1686,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.25.1':
     optional: true
+
+  '@fontsource-variable/roboto-mono@5.2.6': {}
 
   '@fontsource/bungee@5.2.5': {}
 
