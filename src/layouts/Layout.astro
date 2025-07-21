@@ -6,9 +6,7 @@ import '@fontsource-variable/roboto-mono';
 import MobileMenu from '@/components/MobileMenu.astro';
 import Header from '@/components/Header.astro';
 import SideBar from '@/components/SideBar.astro';
-const title = 'Noé Zavala | Desarrollador Web';
-const description =
-  'Hola, soy Noé y desarrollo sitios web modernos, rápidos y optimizados. Ayudo a negocios y emprendedores a destacar con diseño atractivo y código limpio. ¿Necesitas una web de calidad? ¡Contáctame!';
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
