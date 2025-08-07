@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "nxzavdev",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -14,6 +14,7 @@
     "@fontsource/jetbrains-mono": "^5.1.2",
     "@tailwindcss/vite": "^4.0.7",
     "astro": "^5.4.3",
+    "gsap": "^3.13.0",
     "tailwindcss": "^4.0.7"
   }
 }

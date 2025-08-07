@@ -8,18 +8,23 @@ interface Props {
 const { title = '', image, href } = Astro.props as Props;
 ---
 
-<li
-  class="border border-neutral-700 hover:border-white p-4 lg:p-6 transition-all"
+<a
+  aria-label="Ir al proyecto"
+  href={href}
 >
-  <h3 class="mb-4 text-2xl lg:text-3xl font-bold bg-gradient-to-r from-red-500 to-yellow-400 text-transparent bg-clip-text">
-    {title}
-  </h3>
-  <slot />
-  <a aria-label="Ir al proyecto" href={href} class="flex justify-center overflow-hidden">
+  <li
+    class="p-6 lg:p-10 flex h-full flex-col border border-neutral-700 hover:border-white transition-all"
+  >
+    <h3
+      class="mb-4 text-3xl lg:text-4xl font-bold bg-gradient-to-r from-red-500 to-yellow-400 text-transparent bg-clip-text"
+    >
+      {title}
+    </h3>
+    <slot />
     <Image
       src={image}
       alt={title}
-      class:list={'w-full lg:w-sm hover:scale-110 transition ease-in-out'}
+      class:list={'mx-auto w-full lg:w-[24rem] hover:scale-110 transition ease-in-out'}
     />
-  </a>
-</li>
+  </li>
+</a>

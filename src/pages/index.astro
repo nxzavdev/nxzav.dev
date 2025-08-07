@@ -4,12 +4,14 @@ import IntroSection from '@/sections/index/IntroSection.astro';
 import SkillsSection from '@/sections/index/SkillsSection.astro';
 import ProjectsSection from '@/sections/index/ProjectsSection.astro';
 import MainContent from '@/components/MainContent.astro';
+// import Loader from '@/components/Loader.astro';
 const title = 'Noé Zavala | Desarrollador Web';
 const description =
   'Hola, soy Noé y desarrollo sitios web modernos, rápidos y optimizados. Ayudo a negocios y emprendedores a destacar con diseño atractivo y código limpio. ¿Necesitas una web de calidad? ¡Contáctame!';
 ---
 
 <Layout title={title} description={description}>
+  <!-- <Loader /> -->
   <MainContent>
     <IntroSection />
     <SkillsSection />

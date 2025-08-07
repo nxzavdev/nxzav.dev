@@ -1,0 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import nxzavLogo from '@/assets/nxzav.svg';
+---
+
+<div id="loader" class="fixed inset-0 bg-black flex items-center justify-center z-50 border-b-2 border-white">
+  <Image id="loader__logo" src={nxzavLogo} alt="Logo" class="w-24 h-24" />
+</div>
