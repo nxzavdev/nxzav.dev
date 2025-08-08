@@ -18,6 +18,16 @@ body.no-scroll {
   overflow: hidden;
 }
 
+.char {
+  background: linear-gradient(
+    to bottom,
+    var(--color-red-500) 20%,
+    var(--color-yellow-400)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 h1,
 h2,
 h3,
